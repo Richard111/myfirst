@@ -15,12 +15,11 @@ var server = http.createServer(function(req, res) {
   // You can define here your custom logic to handle the request
   // and then proxy the request.
 	proxy.web(req, res, { target: 'http://seaof-153-125-239-175.jp-tokyo-26.arukascloud.io:31567' });
-	proxy.on('error', function(e) {
-		res.writeHead(500);
-		res.end(`Error : ${e}`);
-	});
 });
-
+proxy.on('error', function(e) {
+	res.writeHead(500);
+	res.end("An error occurred");
+});
 
 console.log(`listening on port ${process.env.PORT}`)
 server.listen(process.env.PORT);
